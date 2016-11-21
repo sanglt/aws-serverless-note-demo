@@ -1,16 +1,12 @@
+### Install
+Install serverless and configure its (serverless.com)
+
+Go to this folder (have serverless.yml file) and run:
 ````
-serverless create --template aws-nodejs
+serverless deploy
 
 ````
 
-````
-functions:
-  hello:
-    handler: handler.hello
-    events:
-      - http:
-          path: hello
-          method: get
-          cors:
-            - origins: "*"
-````
+After deploy, copy 3 endpoints and replace in ````public/note.js```` file
+
+Deploy ````public```` folder into s3 and turn on *Static Website Hosting*
