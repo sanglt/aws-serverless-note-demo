@@ -1,0 +1,72 @@
+<!doctype html>
+<html ng-app="nodeApp">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Node App</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- load bootstrap -->
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#note-list 				{ margin-bottom:30px; }
+		#note-form 	 			{ margin-bottom:50px; }
+	</style>
+
+	<!-- SPELLS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script><!-- load angular -->
+	<script src="note.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL notes WITH INITIALIZE FUNCTION -->
+<body ng-controller="mainController">
+	<div class="container">
+
+		<!-- HEADER AND NOTE COUNT -->
+		<div class="jumbotron text-center">
+			<h1>I'm a Note <span class="label label-info">{{ notes.length }}</span></h1>
+		</div>
+
+		<!-- note LIST -->
+		<div id="note-list" class="row">
+			<div class="col-md-8 col-sm-offset-2">
+
+				<!-- LOOP OVER THE notes IN $scope.notes -->
+				<div class="checkbox col-md-8" ng-repeat="note in notes">
+					<div class="col-md-7">
+						{{ note.title }}
+						<div>{{ note.description }}</div>
+						<hr>
+					</div>
+					<div class=".col-md-1">
+						<button type="button" class="btn btn-danger" ng-click="deleteNote(note)">Delete</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- FORM TO CREATE notes -->
+		<div id="note-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="Note Title" ng-model="formData.title">
+						<textarea class="form-control input-lg text-center" placeholder="Note Description" ng-model="formData.description"></textarea>
+					</div>
+
+					<!-- createNote() WILL CREATE NEW notes -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createNote()">Add</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>
